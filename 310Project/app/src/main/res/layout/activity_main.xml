@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#94CE9A"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="casual"
+        android:text="Bean and Leaf"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textColorHighlight="#FFFFFF"
+        android:textColorHint="#FFFFFF"
+        android:textSize="30sp" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Enter your email and password to get started!"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp" />
+
+    <EditText
+        android:id="@+id/email"
+        android:layout_width="269dp"
+        android:layout_height="59dp"
+        android:ems="10"
+        android:hint="Email"
+        android:inputType="textEmailAddress"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#FFFFFF" />
+
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="269dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:textColorHint="#FFFFFF" />
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RadioButton
+            android:id="@+id/drinkerRadio"
+            android:layout_width="198dp"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:tag="1"
+            android:text="Drinker" />
+
+        <RadioButton
+            android:id="@+id/merchantRadio"
+            android:layout_width="199dp"
+            android:layout_height="wrap_content"
+            android:tag="2"
+            android:text="Merchant" />
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/loginButton"
+        android:layout_width="106dp"
+        android:layout_height="58dp"
+        android:text="Log In" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="260dp"
+        android:layout_height="wrap_content"
+        android:text="Don't have an account? Register now!"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF" />
+
+    <Button
+        android:id="@+id/regButton"
+        android:layout_width="98dp"
+        android:layout_height="wrap_content"
+        android:text="Register" />
+
+</LinearLayout>

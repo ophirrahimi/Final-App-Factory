@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "53083777039",
+    "firebase_url": "https://kaldi-6fe42.firebaseio.com",
+    "project_id": "kaldi-6fe42",
+    "storage_bucket": "kaldi-6fe42.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:53083777039:android:e196b0f47eaf75953b5b7a",
+        "android_client_info": {
+          "package_name": "com.appfactory.kaldi"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "53083777039-si5dq6ga197tnnlnbrm5bghp72nr3o4k.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.appfactory.kaldi",
+            "certificate_hash": "ecb051f16cf954df574e2d71f181f62a73ccf127"
+          }
+        },
+        {
+          "client_id": "53083777039-f9nfg3hgmdp1je000an766sjootm2028.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAe4wXm6aGNVfIW7jA6SqJc2Juc6ineQXU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "53083777039-f9nfg3hgmdp1je000an766sjootm2028.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

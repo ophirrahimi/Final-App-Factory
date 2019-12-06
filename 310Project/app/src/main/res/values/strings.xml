@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Bean and Leaf</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="title_manage_profile">Manage Profile</string>
+    <string name="title_merchant">Merchant Profile</string>
+    <string name="title_stores">Manage Stores</string>
+    <string name="title_menu">Menu</string>
+    <string name="title_check_out">Check Out</string>
+    <string name="title_order_history">Order History</string>
+    <string name="title_registration">Registration Page</string>
+    <string name="title_select_registration">Registration Type</string>
+    <string name="title_store_profile">Store Profile</string>
+    <string name="title_add_menu_item">Add Menu Item</string>
+    <string name="title_add_store">Add Store</string>
+</resources>
