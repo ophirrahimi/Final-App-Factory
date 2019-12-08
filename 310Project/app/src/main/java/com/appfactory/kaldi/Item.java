@@ -1,9 +1,10 @@
 package com.appfactory.kaldi;
 
+import java.io.Serializable;
 import java.util.Random;
 
 public class
-Item
+Item implements Serializable
 {
 
     public String name;
@@ -18,13 +19,14 @@ Item
     /**
      *
      */
-    public Item(String name, int caffeine)
+    public Item(String name, int caffeine, double price)
     {
 
         byte[] array = new byte[7];
         new Random().nextBytes(array);
         this.name = name;
         this.caffeine = caffeine;
+        this.price = price;
     }
 
     /**

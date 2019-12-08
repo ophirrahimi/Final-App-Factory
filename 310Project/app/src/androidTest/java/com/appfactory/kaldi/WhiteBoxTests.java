@@ -66,11 +66,11 @@ public class WhiteBoxTests {
         assertNotNull(drinker);
     }
 
-    @Test
-    public void createOrder(){
-        ArrayList<Item> order = new ArrayList<Item>();
-        Order o = new Order();
-    }
+//    @Test
+//    public void createOrder(){
+//        ArrayList<Item> order = new ArrayList<Item>();
+//        Order o = new Order();
+//    }
 
 
 

@@ -24,6 +24,7 @@ public class Drinker implements Serializable
     public List<Order> orderHistory;
     protected static DatabaseReference database = FirebaseDatabase.getInstance().getReference("users");
     protected String id;
+    protected Order currentOrder;
 
 
     /**
@@ -69,5 +70,9 @@ public class Drinker implements Serializable
     public void submitToDatabase()
     {
         database.child("drinkers").child(id).setValue(this);
+    }
+
+    public void addToCurrentOrder(Item i){
+        this.currentOrder.items.add(i);
     }
 }

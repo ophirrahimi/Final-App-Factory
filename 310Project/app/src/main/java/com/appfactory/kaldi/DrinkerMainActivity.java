@@ -199,6 +199,7 @@ public class DrinkerMainActivity extends FragmentActivity implements OnMapReadyC
                     if (merchant.stores != null)
                     {
                         for (int i = 0; i < merchant.stores.size(); i++) {
+                            Log.d("d", ""+merchant);
                             String strAddress = merchant.stores.get(i).getLocation();
                             String businessName = merchant.stores.get(i).getStoreName();
                             LatLng latLng = getLocationFromAddress(getApplicationContext(), strAddress);

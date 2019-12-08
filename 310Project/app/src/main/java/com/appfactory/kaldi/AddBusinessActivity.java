@@ -30,6 +30,7 @@ public class AddBusinessActivity extends AppCompatActivity
         TextView locationInput = (TextView) findViewById(R.id.addressInput);
         TextView initialItemInput = (TextView) findViewById(R.id.initialItemInput);
         TextView caffeineInput = (TextView) findViewById(R.id.caffeineInput);
+        TextView costInput = (TextView) findViewById(R.id.costInput);
         Button addBusiness =  (Button) findViewById(R.id.addBusiness);
         addBusiness.setOnClickListener(new View.OnClickListener()
         {
@@ -40,6 +41,7 @@ public class AddBusinessActivity extends AppCompatActivity
                 String location = locationInput.getText().toString();
                 String initialItem = initialItemInput.getText().toString();
                 String caffeine = caffeineInput.getText().toString();
+                String cost = costInput.getText().toString();
                 DatabaseReference database = FirebaseDatabase.getInstance().getReference("users");
                 Query search = database.child("merchants").orderByKey().equalTo(userName);
                 search.addListenerForSingleValueEvent(new ValueEventListener()
@@ -53,7 +55,7 @@ public class AddBusinessActivity extends AppCompatActivity
                                 if(merchant != null)
                                 {
                                     merchant.id = snapshot.getKey();
-                                    merchant.stores.add(new Store(businesName, location, new Menu(new Item(initialItem, Integer.parseInt(caffeine)))));
+                                    merchant.stores.add(new Store(businesName, location, new Menu(new Item(initialItem, Integer.parseInt(caffeine), Double.parseDouble(cost)))));
                                     merchant.submitToDatabase();
                                     Intent myIntent = myIntent = new Intent(getApplicationContext(), MerchantMainActivity.class);
                                     String currentUser = getIntent().getStringExtra("currentUser");

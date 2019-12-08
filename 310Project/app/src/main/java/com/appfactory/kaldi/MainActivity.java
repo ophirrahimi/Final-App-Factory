@@ -26,6 +26,7 @@ import java.io.Serializable;
 public class MainActivity extends AppCompatActivity implements Serializable
 {
     private int id;
+    boolean userFound;
 
     /**
      * @param savedInstanceState
@@ -48,13 +49,13 @@ public class MainActivity extends AppCompatActivity implements Serializable
                 String email = emailInput.getText().toString();
                 String password = passwordInput.getText().toString();
 
-                if (!validateEmail(email))
-                {
-                    Toast toast = Toast.makeText(getApplicationContext(), "Invalid email!", Toast.LENGTH_LONG);
-                    toast.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, 0);
-                    toast.show();
-                }
-                else if (password.isEmpty())
+//                if (!validateEmail(email))
+//                {
+//                    Toast toast = Toast.makeText(getApplicationContext(), "Invalid email!", Toast.LENGTH_LONG);
+//                    toast.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, 0);
+//                    toast.show();
+//                }
+                if (password.isEmpty())
                 {
                     Toast toast = Toast.makeText(getApplicationContext(), "Password is empty!", Toast.LENGTH_LONG);
                     toast.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, 0);
@@ -90,42 +91,48 @@ public class MainActivity extends AppCompatActivity implements Serializable
                                             else
                                                 drinker = snapshot.getValue(Merchant.class);
                                             drinker.id = snapshot.getKey();
-                                            if (!drinker.password.equals(password))
-                                            {
-                                                Toast toast = Toast.makeText(getApplicationContext(), "Password is incorrect!", Toast.LENGTH_LONG);
-                                                toast.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, 0);
-                                                toast.show();
-                                            }
-                                            else if (drinker.email.equals(email))
-                                            {
-                                                //Update Page
-                                                Intent myIntent;
-                                                if (id == 1) {
-                                                    myIntent = new Intent(view.getContext(), DrinkerMainActivity.class);                                                myIntent.putExtra("isDrinker", id);
-                                                    myIntent.putExtra("isDrinker", true);
-                                                }
-                                                else {
-                                                    myIntent = new Intent(view.getContext(), MerchantMainActivity.class);
-                                                    myIntent.putExtra("isDrinker", false);
+                                            String drinkerEmail = drinker.email.toLowerCase();
+                                            String userEmail = email.toLowerCase();
 
+                                            if (drinkerEmail.equals(userEmail))
+                                            {
+                                                userFound = true;
+                                                if (!drinker.password.equals(password))
+                                                {
+                                                    Toast toast = Toast.makeText(getApplicationContext(), "Password is incorrect!", Toast.LENGTH_LONG);
+                                                    toast.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, 0);
+                                                    toast.show();
                                                 }
-                                                myIntent.putExtra("currentUser", drinker.id);
-                                                startActivity(myIntent);
-                                                break;
-                                            }
-                                            else
-                                            {System.out.println("----------  Account does not exist!");
-                                                Toast toast = Toast.makeText(getApplicationContext(), "Account does not exist!", Toast.LENGTH_LONG);
-                                                toast.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, 0);
-                                                toast.show();
+                                                //Update Page
+                                                else {
+                                                    Intent myIntent;
+                                                    if (id == 1) {
+                                                        myIntent = new Intent(view.getContext(), DrinkerMainActivity.class);
+                                                        myIntent.putExtra("isDrinker", true);
+                                                    } else {
+                                                        myIntent = new Intent(view.getContext(), MerchantMainActivity.class);
+                                                        myIntent.putExtra("isDrinker", false);
+
+                                                    }
+                                                    System.out.println("_____________LOGGING IN");
+                                                    myIntent.putExtra("currentUser", drinker.id);
+                                                    startActivity(myIntent);
+                                                    break;
+                                                }
                                             }
                                         }
-                                        else
-                                        {
+                                        else{
+                                            System.out.println("----------  Account does not exist!");
                                             Toast toast = Toast.makeText(getApplicationContext(), "Account does not exist!", Toast.LENGTH_LONG);
                                             toast.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, 0);
                                             toast.show();
                                         }
+                                    }
+                                    if(userFound != true){
+                                        System.out.println("----------  Account does not exist!");
+                                        Toast toast = Toast.makeText(getApplicationContext(), "Account does not exist!", Toast.LENGTH_LONG);
+                                        toast.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, 0);
+                                        toast.show();
                                     }
                                 }
 

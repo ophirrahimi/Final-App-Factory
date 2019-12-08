@@ -25,7 +25,7 @@ public class AddMenuItemActivity extends AppCompatActivity
         setContentView(R.layout.activity_add_menu_item);
         TextView itemInput = (TextView) findViewById(R.id.itemName);
         TextView caffeineInput = (TextView) findViewById(R.id.caffeine);
-        TextView priceInput = (TextView) findViewById(R.id.price);
+        TextView costInput = (TextView) findViewById(R.id.costInput);
         Button addMenuItem =  (Button) findViewById(R.id.addButton);
         addMenuItem.setOnClickListener(new View.OnClickListener()
         {
@@ -36,6 +36,7 @@ public class AddMenuItemActivity extends AppCompatActivity
                 String userName = getIntent().getStringExtra("currentUser");
                 String itemName = itemInput.getText().toString();
                 String caffeine = caffeineInput.getText().toString();
+                String cost = costInput.getText().toString();
                 DatabaseReference database = FirebaseDatabase.getInstance().getReference("users");
                 Query search = database.child("merchants").orderByKey().equalTo(userName);
                 search.addListenerForSingleValueEvent(new ValueEventListener()
@@ -55,7 +56,7 @@ public class AddMenuItemActivity extends AppCompatActivity
                                     {
                                         if (merchant.stores.get(i).storeName.equals(businessName))
                                         {
-                                            merchant.stores.get(i).menu.addItem(new Item(itemName, Integer.parseInt(caffeine)));
+                                            merchant.stores.get(i).menu.addItem(new Item(itemName, Integer.parseInt(caffeine), Double.parseDouble(cost)));
                                             merchant.submitToDatabase();
                                         }
                                         break;
