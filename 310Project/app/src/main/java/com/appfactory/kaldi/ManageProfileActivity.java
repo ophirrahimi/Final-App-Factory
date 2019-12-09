@@ -36,6 +36,17 @@ public class ManageProfileActivity extends AppCompatActivity implements Serializ
         String email = emailInput.getText().toString();
         String password = passwordInput.getText().toString();
 
+        String currentUserName = getIntent().getStringExtra("currentUserName");
+        TextView profileHeader = (TextView) findViewById(R.id.textView6);
+        String header = "";
+        if(currentUserName!=null) {
+            header += currentUserName;
+            header += "'s Profile";
+        }else{
+            header += "Edit Profile";
+        }
+        profileHeader.setText(header);
+
         Button checkout =  (Button) findViewById(R.id.submit);
         checkout.setOnClickListener(new View.OnClickListener()
         {

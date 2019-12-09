@@ -14,7 +14,7 @@
         android:layout_height="47dp"
         android:layout_marginStart="123dp"
         android:layout_marginTop="99dp"
-        android:text="Order History"
+        android:text="@string/title_order_history"
         android:textAlignment="center"
         android:textSize="30sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -29,4 +29,14 @@
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"></LinearLayout>
+
+    <Button
+        android:id="@+id/backToMap"
+        android:layout_width="174dp"
+        android:layout_height="52dp"
+        android:layout_marginStart="123dp"
+        android:layout_marginBottom="37dp"
+        android:text="Back to Map"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

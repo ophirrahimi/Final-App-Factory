@@ -50,6 +50,15 @@ public class ViewOrder extends AppCompatActivity implements Serializable {
             System.out.println("________SETTING BUTTON: " + itemText);
             layout.addView(newItem);
         }
+        Button back = (Button) findViewById(R.id.backToOrderHistory);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent myIntent = new Intent(v.getContext(), OrderHistoryActivity.class);
+                myIntent.putExtra("currentUser", currentUser);
+                startActivityForResult(myIntent, 0);
+            }
+        });
     }
 
 }

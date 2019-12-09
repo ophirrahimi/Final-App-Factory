@@ -103,7 +103,7 @@ public class MainActivity extends AppCompatActivity implements Serializable
                                                     toast.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, 0);
                                                     toast.show();
                                                 }
-                                                //Update Page
+                                                //Log in
                                                 else {
                                                     Intent myIntent;
                                                     if (id == 1) {
@@ -116,7 +116,9 @@ public class MainActivity extends AppCompatActivity implements Serializable
                                                     }
                                                     System.out.println("_____________LOGGING IN");
                                                     myIntent.putExtra("currentUser", drinker.id);
-                                                    System.out.println("MAIN ACTIVITY DRINKER: " + drinker.id);
+                                                    myIntent.putExtra("currentUserName", drinker.name);
+
+                                                    System.out.println("MAIN ACTIVITY NAME: " + drinker.name);
                                                     startActivity(myIntent);
                                                     break;
                                                 }

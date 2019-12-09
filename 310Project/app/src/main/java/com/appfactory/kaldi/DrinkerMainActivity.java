@@ -68,8 +68,11 @@ public class DrinkerMainActivity extends FragmentActivity implements OnMapReadyC
                 Intent myIntent = new Intent(view.getContext(), ManageProfileActivity.class);
                 String currentUser = getIntent().getStringExtra("currentUser");
                 boolean isDrinker = getIntent().getBooleanExtra("isDrinker", true);
+                String currentUserName = getIntent().getStringExtra("currentUserName");
+
                 myIntent.putExtra("currentUser", currentUser);
                 myIntent.putExtra("isDrinker", isDrinker);
+                myIntent.putExtra("currentUserName", currentUserName);
                 startActivityForResult(myIntent, 0);
             }
         });
@@ -81,9 +84,11 @@ public class DrinkerMainActivity extends FragmentActivity implements OnMapReadyC
                 Intent myIntent = new Intent(view.getContext(), OrderHistoryActivity.class);
                 String currentUser = getIntent().getStringExtra("currentUser");
                 boolean isDrinker = getIntent().getBooleanExtra("isDrinker", true);
+                String currentUserName = getIntent().getStringExtra("currentUserName");
 
                 System.out.println("DRINKER MAIN ACTIVITY USER: " + currentUser);
 
+                myIntent.putExtra("currentUserName", currentUserName);
                 myIntent.putExtra("currentUser", currentUser);
                 myIntent.putExtra("isDrinker", isDrinker);
                 startActivityForResult(myIntent, 0);

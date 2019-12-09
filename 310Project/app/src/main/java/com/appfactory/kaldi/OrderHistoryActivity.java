@@ -11,6 +11,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
@@ -31,9 +32,6 @@ public class OrderHistoryActivity extends AppCompatActivity implements Serializa
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order__history);
 
-        //LOOP THROUGH STORED TRIPS FOR THE USER AND CREATE NEW BUTTONS FOR EACH ONE
-//        Button newTrip = new Button(this);
-//        newTrip.setText(trip.name);
 
         String currentUser = getIntent().getStringExtra("currentUser");
         Boolean isDrinker = getIntent().getBooleanExtra("isDrinker", true);
@@ -43,7 +41,13 @@ public class OrderHistoryActivity extends AppCompatActivity implements Serializa
         ArrayList<Order> currOrderHistory = new ArrayList<Order>();
 
         DatabaseReference database = FirebaseDatabase.getInstance().getReference("users");
-        Query search = database.child("drinkers").orderByKey().equalTo(currentUser);
+        Query search;
+        if(isDrinker){
+            search = database.child("drinkers").orderByKey().equalTo(currentUser);
+        }
+        else{
+            search = database.child("merchants").orderByKey().equalTo(currentUser);
+        }
         search.addListenerForSingleValueEvent(new ValueEventListener()
         {
             @Override
@@ -55,7 +59,6 @@ public class OrderHistoryActivity extends AppCompatActivity implements Serializa
                         System.out.println("_________FOUND USER");
                         if(drinker != null)
                         {
-
                             drinker.id = snapshot.getKey();
                             for(Order o : drinker.orderHistory){
                                 currOrderHistory.add(o);
@@ -71,6 +74,15 @@ public class OrderHistoryActivity extends AppCompatActivity implements Serializa
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
+            }
+        });
+        Button back = (Button) findViewById(R.id.backToMap);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent myIntent = new Intent(v.getContext(), DrinkerMainActivity.class);
+                myIntent.putExtra("currentUser", currentUser);
+                startActivityForResult(myIntent, 0);
             }
         });
 

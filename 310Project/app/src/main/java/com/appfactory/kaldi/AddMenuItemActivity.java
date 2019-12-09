@@ -25,7 +25,7 @@ public class AddMenuItemActivity extends AppCompatActivity
         setContentView(R.layout.activity_add_menu_item);
         TextView itemInput = (TextView) findViewById(R.id.itemName);
         TextView caffeineInput = (TextView) findViewById(R.id.caffeine);
-        TextView costInput = (TextView) findViewById(R.id.costInput);
+        TextView costInput = (TextView) findViewById(R.id.price);
         Button addMenuItem =  (Button) findViewById(R.id.addButton);
         addMenuItem.setOnClickListener(new View.OnClickListener()
         {
@@ -61,7 +61,7 @@ public class AddMenuItemActivity extends AppCompatActivity
                                         }
                                         break;
                                     }
-                                    Intent myIntent = myIntent = new Intent(getApplicationContext(), MerchantMainActivity.class);
+                                    Intent myIntent = new Intent(getApplicationContext(), MerchantMainActivity.class);
                                     String currentUser = getIntent().getStringExtra("currentUser");
                                     boolean isDrinker = getIntent().getBooleanExtra("isDrinker", true);
                                     myIntent.putExtra("currentUser", currentUser);

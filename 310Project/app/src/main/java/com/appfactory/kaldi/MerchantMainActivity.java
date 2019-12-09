@@ -22,8 +22,10 @@ public class MerchantMainActivity extends AppCompatActivity {
                 Intent myIntent = new Intent(view.getContext(), ManageStoreActivity.class);
                 String currentUser = getIntent().getStringExtra("currentUser");
                 boolean isDrinker = getIntent().getBooleanExtra("isDrinker", true);
+                String currentUserName = getIntent().getStringExtra("currentUserName");
                 myIntent.putExtra("currentUser", currentUser);
                 myIntent.putExtra("isDrinker", isDrinker);
+                myIntent.putExtra("currentUserName", currentUserName);
                 startActivityForResult(myIntent, 0);
             }
         });
@@ -36,6 +38,9 @@ public class MerchantMainActivity extends AppCompatActivity {
                 Intent myIntent = new Intent(view.getContext(), DrinkerMainActivity.class);
                 String currentUser = getIntent().getStringExtra("currentUser");
                 boolean isDrinker = getIntent().getBooleanExtra("isDrinker", true);
+                String currentUserName = getIntent().getStringExtra("currentUserName");
+
+                myIntent.putExtra("currentUserName", currentUserName);
                 myIntent.putExtra("currentUser", currentUser);
                 myIntent.putExtra("isDrinker", isDrinker);
                 startActivityForResult(myIntent, 0);
