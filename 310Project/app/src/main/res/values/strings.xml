@@ -12,4 +12,5 @@
     <string name="title_store_profile">Store Profile</string>
     <string name="title_add_menu_item">Add Menu Item</string>
     <string name="title_add_store">Add Store</string>
+    <string name="title_activity_view_order">ViewOrder</string>
 </resources>

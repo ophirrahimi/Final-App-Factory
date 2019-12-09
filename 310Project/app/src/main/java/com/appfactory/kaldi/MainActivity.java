@@ -116,6 +116,7 @@ public class MainActivity extends AppCompatActivity implements Serializable
                                                     }
                                                     System.out.println("_____________LOGGING IN");
                                                     myIntent.putExtra("currentUser", drinker.id);
+                                                    System.out.println("MAIN ACTIVITY DRINKER: " + drinker.id);
                                                     startActivity(myIntent);
                                                     break;
                                                 }

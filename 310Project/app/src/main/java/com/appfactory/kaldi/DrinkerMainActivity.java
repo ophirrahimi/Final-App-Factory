@@ -59,6 +59,8 @@ public class DrinkerMainActivity extends FragmentActivity implements OnMapReadyC
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
         Button manageProfile =  (Button) findViewById(R.id.manageProfile);
+
+
         manageProfile.setOnClickListener(new View.OnClickListener()
         {
             public void onClick(View view)
@@ -79,6 +81,9 @@ public class DrinkerMainActivity extends FragmentActivity implements OnMapReadyC
                 Intent myIntent = new Intent(view.getContext(), OrderHistoryActivity.class);
                 String currentUser = getIntent().getStringExtra("currentUser");
                 boolean isDrinker = getIntent().getBooleanExtra("isDrinker", true);
+
+                System.out.println("DRINKER MAIN ACTIVITY USER: " + currentUser);
+
                 myIntent.putExtra("currentUser", currentUser);
                 myIntent.putExtra("isDrinker", isDrinker);
                 startActivityForResult(myIntent, 0);

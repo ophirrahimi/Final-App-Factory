@@ -7,4 +7,26 @@
     android:layout_height="match_parent"
     android:background="#94CE9A"
     tools:context=".OrderHistoryActivity">
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="183dp"
+        android:layout_height="47dp"
+        android:layout_marginStart="123dp"
+        android:layout_marginTop="99dp"
+        android:text="Order History"
+        android:textAlignment="center"
+        android:textSize="30sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/historyLayout"
+        android:layout_width="400dp"
+        android:layout_height="419dp"
+        android:layout_marginStart="3dp"
+        android:layout_marginBottom="107dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"></LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

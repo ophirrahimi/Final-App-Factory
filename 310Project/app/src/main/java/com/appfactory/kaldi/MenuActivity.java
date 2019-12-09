@@ -1,9 +1,11 @@
 package com.appfactory.kaldi;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
@@ -19,12 +21,15 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.List;
 
 public class MenuActivity extends AppCompatActivity implements Serializable
 {
     private Button newItem;
     private Order bag = new Order();
+    private String storeName;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -37,9 +42,11 @@ public class MenuActivity extends AppCompatActivity implements Serializable
 
     public void getMenu(String businessTitle)
     {
+        storeName = businessTitle;
         DatabaseReference database = FirebaseDatabase.getInstance().getReference("users").child("merchants");
         database.addValueEventListener(new ValueEventListener()
         {
+            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot)
             {
@@ -54,6 +61,10 @@ public class MenuActivity extends AppCompatActivity implements Serializable
                             {
                                 List<Item> menu = merchant.stores.get(i).menu.menu;
                                 for (Item item : menu) {
+//                                    LocalDate localDate = LocalDate.now();
+//                                    System.out.println("______________Local date: " + localDate);
+//                                    item.dateOfOrder = localDate.toString();
+//                                    item.fromStore = storeName;
                                     addMenuItem(item);
                                 }
                             }
@@ -70,6 +81,7 @@ public class MenuActivity extends AppCompatActivity implements Serializable
         Button checkout =  (Button) findViewById(R.id.checkout);
         checkout.setOnClickListener(new View.OnClickListener()
         {
+            @RequiresApi(api = Build.VERSION_CODES.O)
             public void onClick(View view)
             {
                 System.out.println("____________________CLIKED");
@@ -80,6 +92,15 @@ public class MenuActivity extends AppCompatActivity implements Serializable
 //                    search = database.child("drinkers").orderByKey();
 //                else
 //                    search = database.child("merchants").orderByKey();
+
+
+
+
+
+
+
+
+
                 Intent myIntent = new Intent(view.getContext(), CheckoutActivity.class);
 
                 String currentUser = getIntent().getStringExtra("currentUser");
@@ -156,9 +177,14 @@ public class MenuActivity extends AppCompatActivity implements Serializable
         layout.addView(newItem);
         newItem.setOnClickListener(new View.OnClickListener()
         {
+            @RequiresApi(api = Build.VERSION_CODES.O)
             public void onClick(View view)
             {
                 bag.items.add(item);
+                LocalDate localDate = LocalDate.now();
+                System.out.println("______________Local date: " + localDate);
+                bag.dateOfOrder = localDate.toString();
+                bag.fromStore = storeName;
                 System.out.println("______________added item: " + item.name);
             }
 

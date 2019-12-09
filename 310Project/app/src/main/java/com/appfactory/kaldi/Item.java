@@ -11,6 +11,10 @@ Item implements Serializable
     public int caffeine;
     public double price;
 
+//    public String fromStore;
+//
+//    public String dateOfOrder;
+
     public Item()
     {
 

@@ -17,17 +17,21 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".ViewOrder"
+            android:label="@string/title_activity_view_order"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
             android:name=".StoreProfileActivity"
-            android:label="@string/title_store_profile"></activity>
+            android:label="@string/title_store_profile" />
         <activity
             android:name=".AddMenuItemActivity"
-            android:label="@string/title_add_menu_item"/>
+            android:label="@string/title_add_menu_item" />
         <activity
             android:name=".AddStoreActivity"
-            android:label="@string/title_add_store"/>
+            android:label="@string/title_add_store" />
         <activity
             android:name=".AddBusinessActivity"
-            android:label="@string/title_add_store"/>
+            android:label="@string/title_add_store" />
         <activity
             android:name=".CheckoutActivity"
             android:label="@string/title_check_out" />

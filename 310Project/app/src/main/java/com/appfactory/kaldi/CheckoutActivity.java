@@ -3,16 +3,22 @@ package com.appfactory.kaldi;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import org.w3c.dom.Text;
@@ -32,7 +38,7 @@ public class CheckoutActivity extends AppCompatActivity implements Serializable
 
         System.out.println("_________IN CHECKOUT ACTIVITY");
 
-        String userName = getIntent().getStringExtra("currentUser");
+        String currentUser = getIntent().getStringExtra("currentUser");
         Boolean isDrinker = getIntent().getBooleanExtra("isDrinker", true);
         System.out.println("_________STILL WORKING");
         Order bag = (Order) getIntent().getSerializableExtra("bag");
@@ -68,6 +74,59 @@ public class CheckoutActivity extends AppCompatActivity implements Serializable
         totalString += caffeineString;
         totalLayout.setText(totalString);
 
+        Button complete = (Button) findViewById(R.id.completeButton);
+        complete.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                //SCAN THROUGH DATABASE AND ADD ORDER TO USERS ORDER HISTORY
+                System.out.println("________ENTERED ONCLICK OF CHECKOUT");
+                DatabaseReference database = FirebaseDatabase.getInstance().getReference("users");
+                Query search;
+                if(isDrinker) {
+                    search = database.child("drinkers").orderByKey().equalTo(currentUser);
+                }else{
+                    search = database.child("merchants").orderByKey().equalTo(currentUser);
+                }
+                System.out.println("______SEARCH: " + search);
+
+
+                search.addListenerForSingleValueEvent(new ValueEventListener()
+                {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                            if (snapshot.getKey().equals(currentUser))
+                            {
+                                Drinker drinker = snapshot.getValue(Drinker.class);
+                                System.out.println("_______User: " + currentUser);
+                                if(drinker != null)
+                                {
+                                    drinker.id = snapshot.getKey();
+                                    drinker.orderHistory.add(bag);
+                                    drinker.submitToDatabase();
+                                    Intent myIntent = new Intent(getApplicationContext(), DrinkerMainActivity.class);
+                                    String currentUser = getIntent().getStringExtra("currentUser");
+                                    boolean isDrinker = getIntent().getBooleanExtra("isDrinker", true);
+                                    myIntent.putExtra("currentUser", currentUser);
+                                    myIntent.putExtra("isDrinker", isDrinker);
+                                    startActivityForResult(myIntent, 0);
+                                    Toast toast = Toast.makeText(getApplicationContext(), "Order Completed!", Toast.LENGTH_LONG);
+                                    toast.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, 0);
+                                    toast.show();
+                                    break;
+                                }
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+            }
+        });
 
 
     }

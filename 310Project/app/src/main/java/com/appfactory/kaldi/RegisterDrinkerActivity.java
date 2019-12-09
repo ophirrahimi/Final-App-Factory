@@ -82,6 +82,8 @@ public class RegisterDrinkerActivity extends AppCompatActivity implements Serial
                                 //Update Page
                                 Intent myIntent = new Intent(view.getContext(), DrinkerMainActivity.class);
                                 myIntent.putExtra("currentUser", drinker.id);
+
+                                System.out.println("REGISTERING NEW USER: " + drinker.id);
                                 myIntent.putExtra("isDrinker", true);
                                 startActivity(myIntent);
                             }
